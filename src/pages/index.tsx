@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "../components/homepage/Nav";
 import Footer from "../components/homepage/Footer";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -48,7 +49,7 @@ const AuthShowcase: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      {sessionData && <img className="pt-3" src={sessionData.user?.image} alt="" /> }
+      {sessionData && <Image className="pt-3" loader={() => sessionData.user?.image} src={sessionData.user?.image} width={100} height={100} /> }
       <p className="text-center text-2xl text-white">
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
         {secretMessage && <span> - {secretMessage}</span>}
