@@ -14,7 +14,7 @@ export default function SignIn({
   return (
     <>
       <section className="flex h-screen">
-        <div className="bg_left h-screen w-1/3 bg-[url('https://media.istockphoto.com/id/1169332273/photo/close-up-of-two-christian-are-reading-and-study-bible-together-in-sunday-sunday-readings-bible.jpg?s=1024x1024&w=is&k=20&c=IoMb-992cLzgv5ZYlY5Uqn7nIA6m5cyvdeKc_8Zxg5U=')] bg-cover bg-center bg-no-repeat"></div>
+        <div className="bg_left h-screen w-1/3 bg-[url('https://images.unsplash.com/photo-1492052722242-2554d0e99e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80')] bg-cover bg-center bg-no-repeat"></div>
         <div className="signin flex w-2/3 items-center justify-center px-5">
           <div className="signin_container h-2/3 w-full max-w-[700px] bg-slate-300 flex flex-col justify-center items-center rounded-lg">
             <h1 className="pb-4 text-2xl font-semibold">Sign In</h1>
