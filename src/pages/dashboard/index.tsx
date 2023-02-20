@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import AuthShowcase from "../../components/auth/AuthButton";
 import Image from "next/image";
 
@@ -27,9 +27,11 @@ function dashboard() {
               alt="Profile Image"
             />
           )}
+          <p className="pb-3">{sessionData && <span>{sessionData.account?.provider}</span>}</p>
           <p className="pb-3">
-            {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+            {sessionData && <span>Name: {sessionData.user?.name}</span>}
           </p>
+          <p className="pb-3"> {sessionData && <span>Email: {sessionData.user?.email}</span>}</p>
         </div>
         <AuthShowcase />
       </div>
