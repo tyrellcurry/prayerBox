@@ -15,7 +15,7 @@ export default function SignIn({
     <>
       <section className="flex h-screen">
         <div className="bg_left h-screen w-1/3 bg-[url('https://images.unsplash.com/photo-1492052722242-2554d0e99e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80')] bg-cover bg-center bg-no-repeat"></div>
-        <div className="signin flex w-2/3 items-center justify-center px-5">
+        <div className="signin flex w-2/3 items-center justify-center px-5 text-slate-800">
           <div className="signin_container h-2/3 w-full max-w-[700px] bg-slate-300 flex flex-col justify-center items-center rounded-lg">
             <h1 className="pb-4 text-2xl font-semibold">Sign In</h1>
               {Object.values(providers).map((provider) => (
