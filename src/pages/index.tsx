@@ -5,6 +5,7 @@ import Nav from "../components/homepage/Nav";
 import Footer from "../components/homepage/Footer";
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import AuthShowcase from "../components/auth/AuthShowcase";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "../utils/api";
@@ -15,14 +16,14 @@ const Home: NextPage = () => {
   const session = useSession();
   const router = useRouter();
   useEffect(() => {
-    if (session) {
+    if (session.status === "authenticated") {
       router.push('/dashboard');
     }
   }, [session, router]);
 
 
 
-  return !session ? (
+  return session.status === "unauthenticated" ? (
     <>
       <Head>
         <title>PrayerBox ✨</title>
@@ -49,28 +50,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      {sessionData && <Image className="pt-3" loader={() => sessionData.user?.image ?? ''} src={sessionData.user?.image ?? ''} width={100} height={100} alt="Profile Image" /> }
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-};
