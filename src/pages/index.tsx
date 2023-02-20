@@ -5,7 +5,7 @@ import Nav from "../components/homepage/Nav";
 import Footer from "../components/homepage/Footer";
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import AuthShowcase from "../components/auth/AuthShowcase";
+import AuthShowcase from "../components/auth/AuthButton";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "../utils/api";
