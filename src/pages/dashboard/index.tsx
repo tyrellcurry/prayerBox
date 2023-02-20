@@ -13,7 +13,7 @@ function dashboard() {
       router.push("/");
     }
   }, [session, router]);
-  return (
+  return session.status === "authenticated" && (
     <>
       <div className="text-center text-5xl py-2 font-semibold">Dashboard</div>
       <div className="flex items-center flex-col">
