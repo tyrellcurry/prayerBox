@@ -16,25 +16,31 @@ const ApiComponent = ({ search }: ApiComponentProps) => {
 
     getData();
   }, [search]);
+
   const verses = data?.data?.verses;
-  return (
-    <>
-      {/* You can render any JSX you need here */}
-      {data ? (
-        verses.map((verse: any) => {
+
+  if (verses === undefined) {
+    return <p className="text-center">Loading...</p>;
+  } else if (verses.length === 0) {
+    return <p className="text-center">No verses found, please try modifying your search.</p>;
+  } else {
+    return (
+      <div className="grid grid-cols-2 gap-4">
+        {verses.map((verse: any) => {
           console.log(verse);
           return (
-            <>
-              <h2>Ref: {verse.reference}</h2>
+            <div
+              key={verse.id}
+              className="mb-4 rounded-lg bg-slate-300 p-4 text-slate-800 drop-shadow-lg"
+            >
+              <h2 className="font-semibold">{verse.reference}</h2>
               <p>{verse.text}</p>
-            </>
+            </div>
           );
-        })
-      ) : (
-        <p>Loading...</p>
-      )}
-    </>
-  );
+        })}
+      </div>
+    );
+  }
 };
 
 export default ApiComponent;
