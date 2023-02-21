@@ -15,8 +15,8 @@ const ApiSearch = (search: string) => {
     .then((response) => response.json())
     .then((result) => {
       let offset = Math.floor(Math.random() * (result.data.total + 1));
-      if (offset === result.data.total) {
-        offset -= 1;
+      if (offset > 0 && offset === result.data.total) {
+        offset = offset - 1;
       }
       return fetch(
         `https://api.scripture.api.bible/v1/bibles/06125adad2d5898a-01/search?query=${search}&limit=20&offset=${offset}`,
