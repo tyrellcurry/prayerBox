@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import AuthShowcase from "../../components/auth/AuthButton";
 import Image from "next/image";
+import VerseSearch from "../../components/api/VerseSearch";
 
 function dashboard() {
   const session = useSession();
@@ -14,26 +15,15 @@ function dashboard() {
     }
   }, [session, router]);
 
-  // Declare the variable outside of the fetch function
-  let responseData;
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [searchCount, setSearchCount] = useState(0);
 
-  var myHeaders = new Headers();
-  myHeaders.append("api-key", "f016cf0177b4aaa543d94e80df34cf26");
-
-  var requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setSearchValue(searchTerm);
+    setSearchCount((prevCount) => prevCount + 1);
   };
-
-  fetch("https://api.scripture.api.bible/v1/bibles/06125adad2d5898a-01/search?query=love&limit=20", requestOptions)
-    .then((response) => response.json()) // Use response.json() instead of response.text() to parse the response as JSON
-    .then((result) => {
-      responseData = result; // Assign the response to the variable
-      console.log(responseData); // You can log the variable here to confirm that it has been assigned
-    })
-    .catch((error) => console.log("error", error));
-
 
   return (
     session.status === "authenticated" && (
@@ -62,6 +52,27 @@ function dashboard() {
             </p>
           </div>
           <AuthShowcase />
+        </div>
+        <div className="m-auto max-w-[700px]">
+          <form onSubmit={handleSearchSubmit}>
+            <div className="flex justify-center py-4">
+              <input
+                className="px-2 text-slate-800"
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button
+                className="ml-2 bg-slate-200 px-4 text-slate-800 hover:bg-slate-300"
+                type="submit"
+              >
+                Search
+              </button>
+            </div>
+          </form>
+          {searchValue && (
+            <VerseSearch key={searchCount} search={searchValue} />
+          )}
         </div>
       </>
     )
