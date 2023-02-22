@@ -21,16 +21,5 @@ PrayerBox is a fullstack web app designed to help Christians keep track of their
 * TRCP
 * Chat-GPT
 
-## Installation
-To install and run PrayerBox on your local machine, follow these steps:
-
-1. Clone this repository to your local machine.
-2. Install the required dependencies by running npm install in both the client and server directories.
-3. Start the client and server by running 4.npm start in both directories.
-4. Access the app in your browser at http://localhost:3000.
-
-## Contributions
-Contributions to PrayerBox are welcome and encouraged. If you find a bug, have an idea for a new feature, or want to improve the app in any way, feel free to submit a pull request. We'll review your changes and get back to you as soon as possible.
-
 ## License
 PrayerBox is licensed under the [MIT License](LICENSE).
