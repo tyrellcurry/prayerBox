@@ -16,10 +16,19 @@ export default async function (req, res) {
   }
 
   const prayer = req.body.prayer || '';
+  const name = req.body.name || '';
   if (prayer.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please retry your entry, text or numbers only",
+        message: "Please fill in the prayer input",
+      }
+    });
+    return;
+  }
+  if (name.trim().length === 0) {
+    res.status(400).json({
+      error: {
+        message: "Please enter your name",
       }
     });
     return;
@@ -28,7 +37,7 @@ export default async function (req, res) {
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(prayer),
+      prompt: generatePrompt(name, prayer),
       temperature: 0.6,
       max_tokens: 164,
     });
@@ -49,9 +58,7 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(prayer) {
-  const capitalizedPrayer =
-    prayer[0].toUpperCase() + prayer.slice(1).toLowerCase();
-  return `In less than 120 words, please say a first person christian prayer with this prompt:
- ${capitalizedPrayer}. Make sure to clear any previous text.`;
+function generatePrompt(name, prayer) {
+  return `In less than 120 words, please say an encouraging and helpful prayer for the name ${name} with this prompt using gender neutral language ending with "In Jesus' Name, Amen.":
+ ${prayer}. Make sure to clear any previous text.`;
 }
