@@ -1,6 +1,9 @@
 # PrayerBox ✨
-### Currently under development 👨🏻‍💻!
-<br>
+---
+## Currently under development 👨🏻‍💻 ~ Check back for updates 🚀!
+---
+
+## About
 PrayerBox is a fullstack web app designed to help Christians keep track of their prayers, stay connected with God, and deepen their faith. With advanced features like AI-generated prayers and an extensive library of scripture, PrayerBox is the ultimate tool for managing your prayer life.
 
 ## Features
