@@ -34,9 +34,6 @@ const Home: any = () => {
               Prayer<span className="text-orange-400 dark:text-[hsl(52,100%,70%)]">Box</span>
             </h1>
           </div>
-          <div className="prayer pb-10">
-            <PrayerRequest />
-          </div>
         </main>
       </>
     )
