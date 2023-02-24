@@ -72,13 +72,13 @@ export default function PrayerRequest() {
             />
           </div>
           {!isLoading ? (
-            <input
+            <button
               className="cursor-pointer rounded-md bg-blue-500 px-4 py-2 text-white"
               type="submit"
               value="Receive Prayer"
             />
           ) : (
-            <input
+            <button
               type="submit"
               value="Loading..."
               className="cursor-pointer rounded-md bg-slate-300 px-4 py-2 text-white"
