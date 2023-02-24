@@ -42,7 +42,7 @@ export default function PrayerRequest() {
 
   return (
     <div>
-      <main className="text-center flex flex-col items-center px-4 max-w-[400px]">
+      <main className="text-center flex flex-col items-center px-4 max-w-[350px]">
         <h3 className="text-2xl pb-4">Receive An Instant Prayer ✨</h3>
         <form onSubmit={onSubmit} className="w-full">
           <label className="self-start pb-1" htmlFor="name">Your Name:</label>
