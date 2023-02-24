@@ -1,12 +1,8 @@
 import Head from "next/head";
-import Nav from "../components/layout/Nav";
-import Footer from "../components/layout/Footer";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import AuthButton from "../components/auth/AuthButton";
 import { useSession } from "next-auth/react";
 import { api } from "../utils/api";
-import PrayerRequest from "../components/prayerRequest/PrayerRequest";
 
 
 const Home: any = () => {
