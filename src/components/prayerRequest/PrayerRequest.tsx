@@ -76,12 +76,10 @@ export default function PrayerRequest() {
               className="cursor-pointer rounded-md bg-blue-500 px-4 py-2 text-white"
               type="submit">Receive Prayer</button>
           ) : (
-            <input
+            <button
               type="submit"
-              value="Loading..."
               className="cursor-pointer rounded-md bg-slate-300 px-4 py-2 text-white"
-              disabled
-            />
+              disabled>Loading...</button>
           )}
         </form>
         <div className="">
