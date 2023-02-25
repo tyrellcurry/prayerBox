@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import AuthShowcase from "../../components/auth/AuthButton";
 import Image from "next/image";
 import VerseSearch from "../../components/api/VerseSearch";
+import Nav from "../../components/layout/Nav";
 
 function dashboard() {
   const session = useSession();
@@ -28,6 +29,7 @@ function dashboard() {
   return (
     session.status === "authenticated" && (
       <>
+      <Nav />
         <div className="py-2 text-center text-5xl font-semibold">Dashboard</div>
         <div className="flex flex-col items-center">
           <div className="panel flex flex-col items-center">
