@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import AuthShowcase from "../../components/auth/AuthButton";
+import VerseSearch from "../../components/scripture/VerseSearch";
 import Image from "next/image";
-import VerseSearch from "../../components/api/VerseSearch";
-import Nav from "../../components/layout/Nav";
+import AppNav from "../../components/layout/AppNav";
+import Head from "next/head";
 
 function dashboard() {
   const session = useSession();
@@ -16,20 +17,13 @@ function dashboard() {
     }
   }, [session, router]);
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchValue, setSearchValue] = useState("");
-  const [searchCount, setSearchCount] = useState(0);
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    setSearchValue(searchTerm);
-    setSearchCount((prevCount) => prevCount + 1);
-  };
-
   return (
     session.status === "authenticated" && (
       <>
-      <Nav />
+        <Head>
+          <title>Account Dashboard | {sessionData?.user?.name}</title>
+        </Head>
+        <AppNav />
         <div className="py-2 text-center text-5xl font-semibold">Dashboard</div>
         <div className="flex flex-col items-center">
           <div className="panel flex flex-col items-center">
@@ -43,9 +37,6 @@ function dashboard() {
               />
             )}
             <p className="pb-3">
-              {sessionData && <span>{sessionData.account?.provider}</span>}
-            </p>
-            <p className="pb-3">
               {sessionData && <span>Name: {sessionData.user?.name}</span>}
             </p>
             <p className="pb-3">
@@ -55,27 +46,7 @@ function dashboard() {
           </div>
           <AuthShowcase />
         </div>
-        <div className="m-auto max-w-[700px]">
-          <form onSubmit={handleSearchSubmit}>
-            <div className="flex justify-center py-4">
-              <input
-                className="px-2 text-slate-800"
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <button
-                className="ml-2 bg-slate-200 px-4 text-slate-800 hover:bg-slate-300"
-                type="submit"
-              >
-                Search
-              </button>
-            </div>
-          </form>
-          {searchValue && (
-            <VerseSearch key={searchCount} search={searchValue} />
-          )}
-        </div>
+        <VerseSearch />
       </>
     )
   );
