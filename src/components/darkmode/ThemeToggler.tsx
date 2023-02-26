@@ -1,24 +1,61 @@
-import { useTheme } from 'next-themes';
-import { useState, useEffect } from 'react';
-import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
+import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
+import Switch from "@mui/material/Switch";
+import { styled } from "@mui/material/styles";
+import { blue, yellow, blueGrey } from "@mui/material/colors";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+
+const label = { inputProps: { "aria-label": "Switch demo" } };
+
+const BlueSwitch = styled(Switch)(({ theme }) => ({
+  "& .MuiSwitch-switchBase.Mui-checked": {
+    color: yellow[600],
+  },
+  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+    backgroundColor: blueGrey[200],
+  },
+  "& .MuiSwitch-switchBase": {
+    color: blue[400],
+  },
+  "& .MuiSwitch-switchBase + .MuiSwitch-track": {
+    backgroundColor: blueGrey[200],
+  },
+}));
 
 const ThemeToggler = () => {
+  const [checked, setChecked] = useState(true);
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+
+  useEffect(() => {
+    setChecked(theme !== "dark");
+  }, [theme]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTheme(event.target.checked ? "light" : "dark");
+    setChecked(event.target.checked);
+  };
+
   return (
-    <button
-      className="w-8 h-8 bg-blue-50 rounded-lg dark:bg-slate-800 flex items-center justify-center hover:ring-2 transition-all duration-300 focus:outline-none"
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-      aria-label="Toggle Dark Mode"
-    >
-      {theme === 'light' ? (
-        <MoonIcon className="text-yellow-500 w-5 h-5" />
-      ) : (
-        <SunIcon className="text-yellow-300 w-5 h-5" />
-      )}
-    </button>
+    <>
+      <div className="toggle flex items-center gap-3 rounded-lg bg-slate-100/[.05] px-3">
+        {theme === "dark" ? (
+          <MoonIcon className="h-5 w-5 text-[#42a5f5]" />
+        ) : (
+          <MoonIcon className="h-5 w-5 text-slate-300" />
+        )}
+        <BlueSwitch
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "controlled" }}
+          color="warning"
+        />
+        {theme === "light" ? (
+          <SunIcon className="h-5 w-5 text-[#fdd835]" />
+        ) : (
+          <SunIcon className="h-5 w-5 text-slate-300" />
+        )}
+      </div>
+    </>
   );
 };
 
