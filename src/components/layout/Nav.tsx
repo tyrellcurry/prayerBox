@@ -7,11 +7,9 @@ function Nav() {
       <Padding>
         <nav className="flex w-full items-center justify-between p-3">
           <h2>Logo</h2>
-          <div className="login">
-            <AuthButton />
-          </div>
-          <div className="fixed top-10 right-0 rounded-l-md bg-slate-700 p-2 dark:bg-blue-400">
+          <div className="login flex items-center gap-5">
             <ThemeToggler />
+            <AuthButton />
           </div>
         </nav>
       </Padding>
