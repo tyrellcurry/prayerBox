@@ -1,4 +1,3 @@
-import ThemeToggler from "../darkmode/ThemeToggler";
 import AuthButton from "../auth/AuthButton";
 import Padding from "./Padding";
 function Nav() {
@@ -8,7 +7,6 @@ function Nav() {
         <nav className="flex w-full items-center justify-between p-3">
           <h2>Logo</h2>
           <div className="login flex items-center gap-5">
-            <ThemeToggler />
             <AuthButton />
           </div>
         </nav>

@@ -37,7 +37,7 @@ const ThemeToggler = () => {
 
   return (
     <>
-      <div className="toggle flex items-center gap-3 rounded-lg bg-slate-100/[.05] px-3">
+      <div className="toggle flex items-center gap-3 rounded-lg bg-slate-100/[.05] px-3 w-fit">
         {theme === "dark" ? (
           <MoonIcon className="h-5 w-5 text-[#42a5f5]" />
         ) : (
