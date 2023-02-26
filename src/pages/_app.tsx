@@ -5,6 +5,7 @@ import { api } from "../utils/api";
 import { ThemeProvider } from "next-themes";
 import "../styles/globals.css";
 import Padding from "../components/layout/Padding";
+import Head from "next/head";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -13,6 +14,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <ThemeProvider enableSystem={true} attribute="class">
+        <Head>
+          <meta name="description" content="Prayer Journaling Web App" />
+          <link rel="icon" href="/favicon3.png" />
+        </Head>
         <Component {...pageProps} />
       </ThemeProvider>
     </SessionProvider>
