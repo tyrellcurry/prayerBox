@@ -4,9 +4,7 @@ import ThemeToggler from "../darkmode/ThemeToggler";
 import AuthButton from "../auth/AuthButton";
 import Padding from "./Padding";
 function AppNav() {
-  const session = useSession();
   const { data: sessionData } = useSession();
-  console.log(sessionData?.user?.image);
   return (
     <>
       <div className="absolute pt-4">

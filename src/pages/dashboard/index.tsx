@@ -27,10 +27,10 @@ function dashboard() {
         <div className="py-2 text-center text-5xl font-semibold">Dashboard</div>
         <div className="flex flex-col items-center">
           <div className="panel flex flex-col items-center">
-            {sessionData && (
+            {sessionData?.user?.image && (
               <Image
                 className="py-3"
-                src={sessionData.user?.image ?? ""}
+                src={sessionData?.user?.image ?? ""}
                 width={100}
                 height={100}
                 alt="Profile Image"
