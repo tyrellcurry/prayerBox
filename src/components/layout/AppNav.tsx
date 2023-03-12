@@ -7,7 +7,7 @@ import Padding from "./Padding";
 function AppNav() {
   const { data: sessionData } = useSession();
   const router = useRouter();
-  const isActive = (href) => router.pathname === href;
+  const isActive = (href: any) => router.pathname === href;
   const navLinks = [
     {
       name: "Dashboard",
