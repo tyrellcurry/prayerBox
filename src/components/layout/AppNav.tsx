@@ -17,6 +17,10 @@ function AppNav() {
       name: "Journal Entries",
       url: "/journals",
     },
+    {
+      name: "Create New Entry",
+      url: "/new-entry"
+    }
   ];
   return (
     <>
@@ -34,8 +38,8 @@ function AppNav() {
           </button>
         </Padding>
       </div>
-      <nav className="">
-        <div className="box absolute flex h-full flex-col justify-between bg-slate-500 p-8 dark:bg-slate-800 dark:text-slate-300">
+      <nav>
+        <div className="box fixed flex h-full flex-col justify-between bg-slate-500 p-8 dark:bg-slate-800 dark:text-slate-300">
           <ul>
             {navLinks.map((links) => (
               <li className="pb-4">
