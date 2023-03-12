@@ -2,7 +2,7 @@ import AppNav from "../../components/layout/AppNav"
 
 function journals() {
     const today = new Date()
-    const testTitles = ['Journal Entry One', 'Journal Entry Two']
+    const testTitles = ['Journal Entry One', 'Journal Entry Two', 'Journal Entry Three', ]
   return (
     <>
         <AppNav />

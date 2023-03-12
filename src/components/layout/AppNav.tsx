@@ -1,10 +1,23 @@
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import ThemeToggler from "../darkmode/ThemeToggler";
 import AuthButton from "../auth/AuthButton";
 import Padding from "./Padding";
 function AppNav() {
   const { data: sessionData } = useSession();
+  const router = useRouter();
+  const isActive = (href) => router.pathname === href;
+  const navLinks = [
+    {
+      name: "Dashboard",
+      url: "/dashboard",
+    },
+    {
+      name: "Journal Entries",
+      url: "/journals",
+    },
+  ];
   return (
     <>
       <div className="absolute pt-4">
@@ -23,7 +36,20 @@ function AppNav() {
       </div>
       <nav className="">
         <div className="box absolute flex h-full flex-col justify-between bg-slate-500 p-8 dark:bg-slate-800 dark:text-slate-300">
-          <div className="top">Top</div>
+          <ul>
+            {navLinks.map((links) => (
+              <li className="pb-4">
+                <a
+                  href={links.url}
+                  className={`block w-full text-center ${
+                    isActive(links.url) ? "bg-blue-700 text-white dark:bg-blue-500" : "bg-gray-300 dark:bg-gray-500"
+                  } rounded-md px-4 py-2 text-sm font-medium`}
+                >
+                  {links.name}
+                </a>
+              </li>
+            ))}
+          </ul>
           <div className="bottom flex flex-col items-center">
             <div className="pt-4">
               <div className="panel flex justify-center pb-4">
