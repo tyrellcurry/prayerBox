@@ -55,7 +55,6 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    prayerEntries PrayerEntry[]
 }
 
 model VerificationToken {
@@ -70,9 +69,7 @@ model PrayerEntry {
   id         String   @id @default(cuid())
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  userId     String
   date       DateTime @default(now())
   entry      String
 
-  user       User     @relation(fields: [userId], references: [id])
 }
