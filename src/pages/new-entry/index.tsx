@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import AppNav from "../../components/layout/AppNav";
-import LoadingWidget from "../../components/widgets/loadingWidget";
+import LoadingWidget from "../../components/widgets/LoadingWidget";
 
 function NewEntry() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +13,7 @@ function NewEntry() {
   };
 
   const handleSaveEntry = () => {
-    const content = editorRef.current.getContent();
+    const content = (editorRef.current as any)?.getContent();
     console.log(content);
   };
 
@@ -70,13 +70,10 @@ function NewEntry() {
                 content_style:
                   "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
               }}
-              onEditorChange={(content, editor) => {
-                console.log(content);
-              }}
               // Set the ref to get a reference to the editor instance
               // that can be used later to get the content
               onEditorChange={(content, editor) => {
-                editorRef.current = editor;
+                (editorRef.current as any) = editor;
               }}
             />
             <button
