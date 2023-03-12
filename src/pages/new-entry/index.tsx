@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { Oval } from "react-loading-icons";
 import AppNav from "../../components/layout/AppNav";
+import LoadingWidget from "../../components/widgets/loadingWidget";
 
-function newEntry() {
+function NewEntry() {
   const [isLoading, setIsLoading] = useState(true);
+  const editorRef = useRef(null);
 
   const handleEditorInit = () => {
     console.log("Editor initialized");
     setIsLoading(false);
+  };
+
+  const handleSaveEntry = () => {
+    const content = editorRef.current.getContent();
+    console.log(content);
   };
 
   return (
@@ -17,23 +23,23 @@ function newEntry() {
       <main className="ml-[210px]">
         <h1 className="py-8 text-center text-5xl">Create New Journal Entry</h1>
         <section>
-          {isLoading && (
-            <div>
-              <Oval />
-            </div>
-          )}
+          {isLoading && <LoadingWidget loadingText="Loading Editor..." />}
 
           <div
-            className={`editor-container m-auto max-w-[800px] ${
+            className={`editor-container m-auto max-w-[850px] px-4 ${
               isLoading ? "hidden" : ""
             }`}
           >
             <Editor
               apiKey={process.env.TINYMCE_API_KEY}
               onInit={handleEditorInit}
-              initialValue="<p>This is the initial content of the editor.</p>"
+              initialValue="
+              <h1>Prayer Journal Entry Title</h1>
+              <p>Start writing your new entry here...</p>
+              "
               init={{
-                height: 500,
+                height: 400,
+                max_height: 500,
                 width: "100%",
                 menubar: false,
                 plugins: [
@@ -58,16 +64,28 @@ function newEntry() {
                 ],
                 toolbar:
                   "undo redo | blocks | " +
-                  "bold italic forecolor | alignleft aligncenter " +
-                  "alignright alignjustify | bullist numlist outdent indent | " +
-                  "removeformat | help",
+                  "link bold italic forecolor | alignleft aligncenter " +
+                  "alignright alignjustify | bullist numlist | " +
+                  " | help",
                 content_style:
                   "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
               }}
+              onEditorChange={(content, editor) => {
+                console.log(content);
+              }}
+              // Set the ref to get a reference to the editor instance
+              // that can be used later to get the content
+              onEditorChange={(content, editor) => {
+                editorRef.current = editor;
+              }}
             />
+            <button
+              className="mt-2 rounded-md bg-blue-600 p-4 py-2"
+              onClick={handleSaveEntry}
+            >
+              Save Entry
+            </button>
           </div>
-
-          <button>Log editor content</button>
         </section>
       </main>
 
@@ -80,4 +98,4 @@ function newEntry() {
   );
 }
 
-export default newEntry;
+export default NewEntry;
